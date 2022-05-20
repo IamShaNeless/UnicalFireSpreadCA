@@ -4,8 +4,8 @@
 
 #include "surface.h"
 
-#define STEPS 10
-#define DIMENSION 10
+#define STEPS 26
+#define DIMENSION 50
 
 using namespace std;
 
@@ -17,10 +17,18 @@ void transFuncCell( int, int );
 void swap();
 
 int main(int argc, char ** argv){
-    readMatrix -> initializeSurface();
+    readMatrix -> debugInitializeSurface();
+    writeMatrix -> debugInitializeSurface();
 
-    readMatrix -> printSurfaceOnTerminal();
-    writeMatrix -> printSurfaceOnTerminal();
+    for( int step = 0; step < STEPS; step++ ){
+        system("clear");
+        readMatrix -> printSurfaceOnTerminal();
+
+        transition();
+        swap();
+
+        sleep(1);
+    }
 
 
     return 0;
@@ -63,20 +71,28 @@ void transFuncCell( int i, int j){
 
     int cellState = readMatrix -> getCell(i, j).getState();
 
-    /* - legge 1 e 3 - */
-    if( cellState != 1 && cellState != 4 ){ //TODO - si suppone rimangano uguali
-        /* - legge 2 - */
-        if( cellState == 2 )
-            readMatrix -> surface[V(i, readMatrix -> cols, j)].setState(2);
-        if( cellState == 3 ){
-            // TODO - Come influire sulle celle adiacenti???
-            
+    switch (cellState){
+        case 1:
+            writeMatrix -> surface[V(i, writeMatrix -> cols, j)].setState(1);
+            break;
+        case 4:
+            writeMatrix -> surface[V(i, writeMatrix -> cols, j)].setState(4);
+            break;
+        case 3:
+            /* - legge 4 - */
+            for( int d_i = -1; d_i < 2; d_i++ ){
+                for( int d_j = -1; d_j < 2; d_j++ ){
 
+                    if( (d_i != 0 || d_j != 0)  && readMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].getState() == 2)
+                        writeMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].setState(3);
+                }
+            }
 
-        }
-
+            /* - legge 2 - */
+            writeMatrix -> surface[V(i, writeMatrix -> cols, j)].setState(4);
+            break;
     }
-    
+
 }
 
 
