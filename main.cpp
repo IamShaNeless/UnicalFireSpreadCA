@@ -7,7 +7,7 @@
 
 #define STEPS 26
 #define DIMENSION 40
-#define DELTA 0.5
+#define TIME_STEP 0.5
 
 using namespace std;
 
@@ -32,7 +32,7 @@ int main(int argc, char ** argv){
         transition();
         swap();
 
-        sleep(DELTA);
+        sleep(TIME_STEP);
     }
 
 
