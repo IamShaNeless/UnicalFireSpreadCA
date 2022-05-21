@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <time.h>
 
 #include "surface.h"
 
 #define STEPS 26
-#define DIMENSION 20
+#define DIMENSION 40
+#define DELTA 0.5
 
 using namespace std;
 
@@ -18,6 +20,8 @@ void swap();
 bool fireProbability();
 
 int main(int argc, char ** argv){
+    srand (time(NULL));
+
     readMatrix -> debugInitializeSurface();
     writeMatrix -> debugInitializeSurface();
 
@@ -28,7 +32,7 @@ int main(int argc, char ** argv){
         transition();
         swap();
 
-        sleep(1);
+        sleep(DELTA);
     }
 
 
