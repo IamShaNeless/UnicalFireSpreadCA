@@ -5,7 +5,7 @@
 #include "surface.h"
 
 #define STEPS 26
-#define DIMENSION 50
+#define DIMENSION 20
 
 using namespace std;
 
@@ -15,6 +15,7 @@ Surface* writeMatrix = new Surface(DIMENSION, DIMENSION);
 void transition();
 void transFuncCell( int, int );
 void swap();
+bool fireProbability();
 
 int main(int argc, char ** argv){
     readMatrix -> debugInitializeSurface();
@@ -83,8 +84,10 @@ void transFuncCell( int i, int j){
             for( int d_i = -1; d_i < 2; d_i++ ){
                 for( int d_j = -1; d_j < 2; d_j++ ){
 
-                    if( (d_i != 0 || d_j != 0)  && readMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].getState() == 2)
-                        writeMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].setState(3);
+                    if( (d_i != 0 || d_j != 0)  && readMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].getState() == 2){
+                        if(fireProbability())
+                            writeMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].setState(3);
+                    }
                 }
             }
 
@@ -93,6 +96,19 @@ void transFuncCell( int i, int j){
             break;
     }
 
+}
+
+bool fireProbability(){
+    /* funzione per esprimere la probabilità di una cella allo stato 2
+    di passare allo stato 3. Tale probabilità dipende, secondo la relazione di L.R,
+    da svariati fattori:
+    - tipo di vegetazione (non ancora implementato)
+    - densità di vegetazione (non ancora implementato)
+    - inclinazione del terreno (non implementato)
+    - velocità del vento (che trascureremo)
+    
+    Per il momento, la probabilità sarà del 25% */
+    return (rand() % 101 <= 25 );
 }
 
 
