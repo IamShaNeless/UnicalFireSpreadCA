@@ -4,6 +4,7 @@
 #include "cell.h"
 
 #define V(R,COLS,C) ((R) * (COLS) + (C) )
+#define MAXHEIGHT 400
 
 class Surface{
     public:
@@ -34,8 +35,11 @@ class Surface{
                 for( int j = 0; j < cols; j++ )
                     if( i == 0 || i == rows -1 || j == 0 || j == cols -1  )
                         this -> surface[V( i, this -> cols, j )].setState( 1 );
-                    else
+                    else{
                         this -> surface[V( i, this -> cols, j )].setState( rand() % 4 + 1 );
+                        this -> surface[V( i, this -> cols, j )].setHeight( rand() % MAXHEIGHT + 1);
+                    }
+
             }
         }
 

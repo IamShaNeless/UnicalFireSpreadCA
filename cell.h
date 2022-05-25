@@ -17,12 +17,16 @@ class Cell{
     private:
         int actualState;
         Color gradient;
+        int height;         
     public:
         Cell(){}
         Cell(int state){ this -> actualState = state; }
 
         int getState() const { return this -> actualState; }
         void setState(int state){ this -> actualState = state; }
+        
+        int getHeight() const { return this -> height; }
+        void setHeight(int height) { this -> height = height; }
 };
 
 

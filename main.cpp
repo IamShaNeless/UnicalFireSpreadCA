@@ -6,8 +6,8 @@
 #include "surface.h"
 
 #define STEPS 26
-#define DIMENSION 40
-#define TIME_STEP 0.5
+#define DIMENSION 30
+#define TIME_STEP 1
 
 using namespace std;
 
