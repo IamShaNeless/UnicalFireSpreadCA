@@ -4,7 +4,7 @@
 #include "cell.h"
 
 #define V(R,COLS,C) ((R) * (COLS) + (C) )
-#define MAXHEIGHT 400
+#define MAXHEIGHT 300
 
 class Surface{
     public:
