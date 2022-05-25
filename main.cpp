@@ -7,7 +7,7 @@
 
 #define STEPS 26
 #define DIMENSION 30
-#define TIME_STEP 1
+#define TIME_STEP 0.5
 
 using namespace std;
 
@@ -80,23 +80,21 @@ void transFuncCell( int i, int j){
         case 1:
             writeMatrix -> surface[V(i, writeMatrix -> cols, j)].setState(1);
             break;
-        case 4:
+        case 3:
             writeMatrix -> surface[V(i, writeMatrix -> cols, j)].setState(4);
             break;
-        case 3:
+        case 2:
             /* - legge 4 - */
+            int count = 0;
             for( int d_i = -1; d_i < 2; d_i++ ){
                 for( int d_j = -1; d_j < 2; d_j++ ){
-
-                    if( (d_i != 0 || d_j != 0)  && readMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].getState() == 2){
-                        if(fireProbability())
-                            writeMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].setState(3);
+                    if( (d_i != 0 || d_j != 0)  && readMatrix -> surface[V(i + d_i, DIMENSION ,j + d_j)].getState() == 3){
+                        count += 1;
                     }
                 }
             }
-
-            /* - legge 2 - */
-            writeMatrix -> surface[V(i, writeMatrix -> cols, j)].setState(4);
+            if( rand() % 8 + 1 <= count )
+                readMatrix -> surface[V(i, DIMENSION, j)].setState(3);
             break;
     }
 
