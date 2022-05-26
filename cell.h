@@ -46,7 +46,7 @@ class Cell{
     -Stato 1: la cella non contiene combustibile derivante da vegetazione (parti di città)
     -Stato 2: la cella contiene combustibile derivante da vegetazione che non è bruciato
     -Stato 3: la cella contiene combustibile derivante da vegetazione che sta bruciando
-    -Stato 4: la cella contiene combustibile derivante da vegetzione che è stato bruciato
+    -Stato 4: la cella contiene combustibile derivante da vegetzione che è stato bruciato 
 
 
     ATTRIBUTI AGGIUNTIVI

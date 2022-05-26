@@ -17,7 +17,7 @@ Surface* writeMatrix = new Surface(DIMENSION, DIMENSION);
 void transition();
 void transFuncCell( int, int );
 void swap();
-bool fireProbability();
+
 
 int main(int argc, char ** argv){
     srand (time(NULL));
@@ -100,18 +100,7 @@ void transFuncCell( int i, int j){
 
 }
 
-bool fireProbability(){
-    /* funzione per esprimere la probabilità di una cella allo stato 2
-    di passare allo stato 3. Tale probabilità dipende, secondo la relazione di L.R,
-    da svariati fattori:
-    - tipo di vegetazione (non ancora implementato)
-    - densità di vegetazione (non ancora implementato)
-    - inclinazione del terreno (non implementato)
-    - velocità del vento (che trascureremo)
-    
-    Per il momento, la probabilità sarà del 25% */
-    return (rand() % 101 <= 25 );
-}
+
 
 
 
